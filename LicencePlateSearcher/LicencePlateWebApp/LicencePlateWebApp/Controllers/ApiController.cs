@@ -16,8 +16,8 @@ namespace LicencePlateWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("/search{what}")]
-        public IActionResult Search([FromBody] CarPlate carPlate, string what)
+        [Route("/search/{what}")]
+        public IActionResult SearchPlate([FromBody] CarPlate carPlate, string what)
         {
             var thisCarPlate = CarPlateRepository.GetByPlate(what);
 
@@ -27,8 +27,20 @@ namespace LicencePlateWebApp.Controllers
             }
 
             return new ObjectResult(thisCarPlate);
+        }
 
+        [HttpGet]
+        [Route("/search/{brand}")]
+        public IActionResult SearchBrand([FromBody] CarPlate carPlate, string brand)
+        {
+            var thisCarPlate = CarPlateRepository.GetBrandList(brand);
 
+            if (thisCarPlate == null)
+            {
+                return NotFound();
+            }
+
+            return new ObjectResult(thisCarPlate);
         }
     }
 }

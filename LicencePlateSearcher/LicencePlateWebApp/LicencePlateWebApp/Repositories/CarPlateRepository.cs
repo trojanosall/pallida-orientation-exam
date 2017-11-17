@@ -100,5 +100,14 @@ namespace LicencePlateWebApp.Repositories
 
             return SearchedListDiplomatCar;
         }
+
+        public List<CarPlate> GetBrandList(string brandName)
+        {
+            var listOfCar = (from car in CarPlateContext.CarPlates
+                             where car.Brand == brandName
+                             select car).ToList();
+
+            return listOfCar;
+        }
     }
 }
