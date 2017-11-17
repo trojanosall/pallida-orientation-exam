@@ -55,6 +55,29 @@ namespace LicencePlateWebApp.Repositories
             return SearchedList;
         }
 
+        public List<CarPlate> GetListPoliceCar()
+        {
+            var listOfCarPlates = (from carplates in CarPlateContext.CarPlates
+                                   orderby carplates.Plate descending
+                                   select carplates).ToList();
+
+            string policeCarSign = "RB";
+
+            List<CarPlate> SearchedListPoliceCar = new List<CarPlate>();
+
+            foreach (var item in listOfCarPlates)
+            {
+                string partOfPlates = item.Plate.Substring(0, policeCarSign.Length);
+
+                if (partOfPlates == policeCarSign)
+                {
+                    SearchedListPoliceCar.Add(item);
+                }
+            }
+
+            return SearchedListPoliceCar;
+        }
+
 
         //public List<CarPlate> GetSearchPlate()
         //{
