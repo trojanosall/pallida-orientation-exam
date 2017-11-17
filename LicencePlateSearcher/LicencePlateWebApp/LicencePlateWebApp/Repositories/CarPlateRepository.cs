@@ -34,6 +34,28 @@ namespace LicencePlateWebApp.Repositories
         }
 
 
+        public List<CarPlate> GetSearchList(string userInput)
+        {
+            var listOfCarPlates = (from carplates in CarPlateContext.CarPlates
+                                   orderby carplates.Plate descending
+                                   select carplates).ToList();
+
+            List<CarPlate> SearchedList = new List<CarPlate>();
+
+            foreach (var item in listOfCarPlates)
+            {
+                string partOfPlates = item.Plate.Substring(0, userInput.Length);
+
+                if (partOfPlates == userInput)
+                {
+                    SearchedList.Add(item);
+                }
+            }
+
+            return SearchedList;
+        }
+
+
         //public List<CarPlate> GetSearchPlate()
         //{
 
