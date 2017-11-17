@@ -38,5 +38,12 @@ namespace LicencePlateWebApp.Controllers
 
             return View(carplate);
         }
+
+        [HttpGet]
+        [Route("/List")]
+        public IActionResult List()
+        {
+            return View(CarPlateRepository.GetList());
+        }
     }
 }

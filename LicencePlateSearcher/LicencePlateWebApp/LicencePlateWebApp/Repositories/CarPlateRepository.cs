@@ -14,11 +14,6 @@ namespace LicencePlateWebApp.Repositories
             CarPlateContext = carPlateContext;
         }
 
-        //public void PlateIdentification(string userInput)
-        //{
-        //    CarPlateContext.CarPlates.CarPlate.Table = userInput;
-        //}
-
         public CarPlate GetByPlate(string userInput)
         {
             var selectedItem = from selectOne in CarPlateContext.CarPlates
@@ -27,6 +22,17 @@ namespace LicencePlateWebApp.Repositories
 
             return selectedItem.FirstOrDefault();
         }
+
+
+        public List<CarPlate> GetList()
+        {
+            var listOfCarPlates = (from carplates in CarPlateContext.CarPlates
+                                   orderby carplates.Plate descending
+                                   select carplates).ToList();
+
+            return listOfCarPlates;
+        }
+
 
         //public List<CarPlate> GetSearchPlate()
         //{
