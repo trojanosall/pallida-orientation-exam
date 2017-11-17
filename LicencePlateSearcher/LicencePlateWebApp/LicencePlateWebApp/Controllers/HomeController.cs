@@ -21,15 +21,6 @@ namespace LicencePlateWebApp.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[Route("Search")]
-        //public IActionResult Search(string charactersOfPlate)
-        //{
-        //    CarPlateRepository.GetByPlate(charactersOfPlate);
-
-        //    return RedirectToAction("Search");
-        //}
-
         [HttpGet]
         [Route("Search")]
         public IActionResult Search(string charactersOfPlate)
