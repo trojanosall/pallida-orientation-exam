@@ -78,11 +78,27 @@ namespace LicencePlateWebApp.Repositories
             return SearchedListPoliceCar;
         }
 
+        public List<CarPlate> GetListDiplomatCar()
+        {
+            var listOfCarPlates = (from carplates in CarPlateContext.CarPlates
+                                   orderby carplates.Plate descending
+                                   select carplates).ToList();
 
-        //public List<CarPlate> GetSearchPlate()
-        //{
+            string diplomatCarSign = "DT";
 
-        //    //return CalorieTableContext.Foods.ToList();
-        //}
+            List<CarPlate> SearchedListDiplomatCar = new List<CarPlate>();
+
+            foreach (var item in listOfCarPlates)
+            {
+                string partOfPlates = item.Plate.Substring(0, diplomatCarSign.Length);
+
+                if (partOfPlates == diplomatCarSign)
+                {
+                    SearchedListDiplomatCar.Add(item);
+                }
+            }
+
+            return SearchedListDiplomatCar;
+        }
     }
 }
