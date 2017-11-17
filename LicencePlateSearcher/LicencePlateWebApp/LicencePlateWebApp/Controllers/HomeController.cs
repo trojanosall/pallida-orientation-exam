@@ -50,9 +50,14 @@ namespace LicencePlateWebApp.Controllers
         [Route("/List/PoliceCar")]
         public IActionResult PoliceCarList()
         {
-            CarPlateRepository.GetListPoliceCar();
-
             return View(CarPlateRepository.GetListPoliceCar());
+        }
+
+        [HttpGet]
+        [Route("/List/DimplomatsCar")]
+        public IActionResult DimplomatsCarList()
+        {
+            return View(CarPlateRepository.GetListDiplomatCar());
         }
     }
 }
